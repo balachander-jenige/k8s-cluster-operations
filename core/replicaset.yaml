@@ -3,18 +3,20 @@ kind: ReplicaSet
 metadata:
   creationTimestamp: null
   labels:
-    app: nginx
-  name: nginx
+    app: tracedata
+    type: backend
+  name: nginx-replicaset
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: nginx
+      app: tracedata
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: nginx
+        app: tracedata
+        type: backend
     spec:
       containers:
       - image: nginx
