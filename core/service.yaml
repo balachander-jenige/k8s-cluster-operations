@@ -3,12 +3,12 @@ kind: Service
 metadata:
   name: nginx-service
   labels:
-    app: tracedata
-    type: backend
+    app: nginx
+    tier: frontend
 spec:
   selector:
-    app: tracedata
-  type: NodePort
+    app: nginx
+  type: LoadBalancer
   ports:
     - targetPort: 80
       port: 80
