@@ -1,18 +1,28 @@
-Resource Type	Use Case	Example Command
-Create Object	Create from a definition file	kubectl create -f <filename>
-View ReplicaSets/RC	List replication controllers	kubectl get replicaset or kubectl get replicationcontroller
-Delete ReplicaSet/RC	Remove a replication controller	kubectl delete replicaset <replicaset-name>
-Update Definition	Replace object using YAML file	kubectl replace -f <filename>
-Scale ReplicaSet/RC	Change number of replicas	kubectl scale --replicas=<number> -f <filename
+Kubernetes common kubectl commands — simple and easy to revise
 
-kubectl create -f deployment-definition.yml
+- Create or update objects: `kubectl apply -f <file>` — create or patch from YAML
+- Create object (one-time): `kubectl create -f <file>` — create from a definition
+- Replace object: `kubectl replace -f <file>` — replace the full object
+- Delete object: `kubectl delete <resource> <name>` or `kubectl delete -f <file>`
+- List resources: `kubectl get <resource>` (e.g., `pods`, `deployments`, `replicasets`, `services`)
+- List all namespaces: `kubectl get pods --all-namespaces`
+- List by namespace: `kubectl get pods --namespace=<namespace>`
+- Create namespace: `kubectl create namespace <name>`
+- Scale from file or resource: `kubectl scale --replicas=<n> -f <file>` or `kubectl scale deployment/<name> --replicas=<n>`
+- Describe resource details: `kubectl describe <resource> <name>`
+- View logs: `kubectl logs <pod>` (add `-c <container>` if needed)
+- Exec into a pod: `kubectl exec -it <pod> -- /bin/sh` (or `/bin/bash`)
+- Port-forward: `kubectl port-forward <pod|svc> <local>:<remote>`
+- Rollout status: `kubectl rollout status deployment/<name>`
+- Restart rollout: `kubectl rollout restart deployment/<name>`
+- View events: `kubectl get events`
 
-kubectl get deployments
-kubectl get replicasets
-kubectl get pods
+Quick tips
+- Use `kubectl apply -f` when you edit YAML often (idempotent).
+- Use `kubectl get <resource> -o wide` for more info.
+- Add `--namespace=<ns>` to commands to target a namespace.
 
-kubectl get pods --namespace=kube-system
- kubectl create -f pod-definition.yml --namespace=dev
- kubectl create namespace dev
-
-kubectl get pods --all-namespaces
+Examples
+- `kubectl apply -f deployment.yaml`
+- `kubectl get pods --namespace=dev`
+- `kubectl scale deployment/my-app --replicas=3`
