@@ -6,6 +6,11 @@ metadata:
     run: nginx
   name: nginx
 spec:
+  tolerations:
+  - key: "app"
+    operator: "Equal"
+    value: "blue"
+    effect: "NoExecute"
   containers:
   - image: nginx
     name: nginx
