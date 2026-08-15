@@ -328,6 +328,7 @@ Docker daemon may not be running:
 ```bash
 sudo systemctl start docker
 kind create cluster --name cka-practice
+kind delete cluster --name cka-practice
 ```
  
 ---
